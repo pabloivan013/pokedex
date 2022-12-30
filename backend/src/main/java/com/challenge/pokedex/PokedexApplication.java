@@ -10,6 +10,4 @@ public class PokedexApplication {
 		SpringApplication.run(PokedexApplication.class, args);
 	}
 
-
-
 }
