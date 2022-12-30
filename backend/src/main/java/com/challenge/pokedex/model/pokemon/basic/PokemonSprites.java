@@ -3,7 +3,6 @@ package com.challenge.pokedex.model.pokemon.basic;
 public class PokemonSprites {
 
     private String backDefault;
-
     private String frontDefault;
 
     public String getBackDefault() {

@@ -1,6 +1,7 @@
 package com.challenge.pokedex.model.pokemon.basic;
 
 public class Ability {
+
     private String name;
 
     public String getName() {

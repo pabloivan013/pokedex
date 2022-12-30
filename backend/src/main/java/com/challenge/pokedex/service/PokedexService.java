@@ -20,7 +20,6 @@ public class PokedexService {
     WebClient pokedexClient;
 
     private <T> T getPokemonResource(String endpoint, String value, Class<T> resource) {
-
         return pokedexClient
                 .get()
                 .uri(endpoint + "/" + value)
