@@ -7,11 +7,21 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Deserializer class used to obtain the flavor text (brief description) of a Pokemon
+ * filtering by language.
+ *
+ * TODO: Allow the user select the language
+ */
 @Component
 public class FlavorDeserializer extends JsonDeserializer<List<FlavorTextEntry>> {
 
@@ -44,7 +54,7 @@ public class FlavorDeserializer extends JsonDeserializer<List<FlavorTextEntry>> 
                         entries.add(entry);
                     }
                 } catch (JsonProcessingException e) {
-                    throw new RuntimeException(e);
+                    throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error during Pokemon detail deserialization", e);
                 }
             });
         }
