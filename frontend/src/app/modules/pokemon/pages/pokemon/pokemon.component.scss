@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 400px;
+}
+
+.item {
+    margin: 20px;
+    width: 400px;
+}
+
+.mdc-card  {
+    align-items: center;
+}
+
+.search-card-title {
+    padding: 4px;
+}
+
+.error {
+    text-align: center;
+}

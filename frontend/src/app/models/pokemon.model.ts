@@ -3,6 +3,7 @@ export class Pokemon {
 
   name: string = '';
   weight: string = '0';
+  sprites: any = '';
 
   constructor(){
   }

@@ -10,33 +10,43 @@ import { PokemonService } from 'src/app/services/pokemon.service'
 export class PokemonComponent {
 
   pokemon: Pokemon | undefined;
+  pokemonSearchName: string = '';
+  loading: boolean = false;
+  errorMessage: string = '';
 
-  // TODO: Add search element
   constructor(
     private pokemonService: PokemonService
   ) {
-    this.pokemon = new Pokemon();
-    console.log("Real: ", this.pokemon.constructor.name)
-    console.log("Real Pokemon Object: ", this.pokemon.getData())
-    this.getPokemon('ditto');
+  }
+
+  getPokemonOnClick() {
+    console.log("Search pokemon: ", this.pokemonSearchName)
+    this.getPokemon(this.pokemonSearchName);
   }
 
   getPokemon(name: string) {
     this.pokemon = undefined;
+    this.loading = true
+    this.errorMessage = ''
 
     this.pokemonService.getPokemon(name).subscribe({
       next: (pokemon: Pokemon) => {
-        console.log("False: ", pokemon.constructor.name)
         // TODO: Fix 'pokemon' to be a 'Pokemon' object
-        //console.log("False Pokemon Object: ", pokemon.getData())
         this.pokemon = pokemon
       },
       error: (error) => {
         console.log("ERROR getPokemon:", error)
+        this.loading = false
+        if (error.status == 404) {
+          this.errorMessage = `Pokemon '${this.pokemonSearchName}' not found`
+        } else {
+          this.errorMessage = "Error obtaining pokemon"
+        }
+      },
+      complete: () => {
+        this.loading = false
       }
     })
 
   }
-
-
 }
